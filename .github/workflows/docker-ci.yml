@@ -16,3 +16,10 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t devops-app .
+          docker images
+
+      - name: Test container startup
+        run: |
+          docker run -d -p 8080:80 --name test-container devops-app
+          sleep 5
+          docker ps
